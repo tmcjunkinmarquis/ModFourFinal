@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 describe('API routes', () => {
   
-  describe('Name of the group', () => {
+  describe('', () => {
     
   });
 
