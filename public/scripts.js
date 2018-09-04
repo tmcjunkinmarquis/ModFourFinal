@@ -45,7 +45,8 @@ const makeNewIdea = async (event)=>{
     headers: {'Content-Type':'application/json'}
   };
   await fetch('./api/v1/ideas', optionsObj);
-  $('form-bucketlist').reset()
+  $('#title').val('');
+  $('#description').val('');
 };
 
 
