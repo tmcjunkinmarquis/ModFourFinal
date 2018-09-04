@@ -21,11 +21,9 @@ const packageSingleIdea = (idea) => {
     <h2>${idea.title}</h2>
     <p>${idea.description}</p>
     <button class="delete">Delete</button>
-  
   </div>
   `);
 };
-
 
 const ideasToPage = async ()=>{
   const allIdeas = await getAllIdeas();
@@ -34,7 +32,6 @@ const ideasToPage = async ()=>{
 
 const makeNewIdea = async (event)=>{
   event.preventDefault();
-  console.log('howdy');
   
   const ideaInput = document.querySelector('#title');
   const ideaDescription = document.querySelector('#description');
@@ -45,9 +42,13 @@ const makeNewIdea = async (event)=>{
     body: JSON.stringify({title, description}),
     headers: {'Content-Type':'application/json'}
   };
-  await fetch('./api/v1/ideas', optionsObj);
+  const idea = await fetch('./api/v1/ideas', optionsObj);
+  const response = await idea.json();
   $('#title').val('');
   $('#description').val('');
+  console.log(response);
+  
+  packageSingleIdea(response);
 };
 
 
