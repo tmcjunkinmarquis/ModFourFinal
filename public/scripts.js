@@ -1,4 +1,4 @@
-//on load bring in all ideas
+
 
 const addIdeaHandler = document.querySelector('.button');
 
@@ -29,3 +29,7 @@ const makeNewIdea = (event)=>{
 
 
 addIdeaHandler.addEventListener('click', makeNewIdea);
+
+$(document).ready(function () {
+  getAllIdeas();
+});
