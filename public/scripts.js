@@ -6,9 +6,20 @@ const getAllIdeas = async ()=>{
   
   //fetch ideas from ideas table in bucketlist db
   let ideas = await fetch('./api/v1/ideas')
-  console.log(await ideas.json());
-  return ideas;
+  return await ideas.json()
 };
+
+const displayIdeas = (allIdeas)=>{
+  allIdeas.forEach((idea)=>{
+    
+  })
+  
+}
+
+const ideasToPage = async ()=>{
+  const allIdeas = await getAllIdeas()
+  displayIdeas(allIdeas)
+}
 
 const makeNewIdea = ()=>{
   
@@ -28,5 +39,5 @@ const makeNewIdea = ()=>{
 addIdeaHandler.addEventListener('click', makeNewIdea);
 
 $(document).ready(function () {
-  getAllIdeas();
+  ideasToPage();
 });
