@@ -1,6 +1,6 @@
 
 
-const addIdeaHandler = document.querySelector('.button');
+
 
 const getAllIdeas = async ()=>{
   
@@ -31,21 +31,25 @@ const ideasToPage = async ()=>{
   displayIdeas(allIdeas);
 };
 
-const makeNewIdea = ()=>{
+const makeNewIdea = async (event)=>{
+  event.preventDefault();
+  console.log('howdy');
   
-
   const ideaInput = document.querySelector('#title');
-
   const ideaDescription = document.querySelector('#description');
-
   const title = ideaInput.value;
   const description = ideaDescription.value;
-  
-  //post title and description to ideas table in bucketlist db
+  const optionsObj = {
+    method: 'POST',
+    body: JSON.stringify({title, description}),
+    headers: {'Content-Type':'application/json'}
+  };
+  await fetch('./api/v1/ideas', optionsObj);
+  $('form-bucketlist').reset()
 };
 
 
-
+const addIdeaHandler = document.querySelector('.button');
 addIdeaHandler.addEventListener('click', makeNewIdea);
 
 $(document).ready(function () {
