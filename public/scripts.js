@@ -42,8 +42,15 @@ const makeNewIdea = async (event)=>{
   packageSingleIdea(response);
 };
 
+const deleteIdea = ()=>{
+  console.log('howdy')
+}
+
 const addIdeaHandler = document.querySelector('.button');
 addIdeaHandler.addEventListener('click', makeNewIdea);
+
+
+$('.ideas-container').on('click', '.delete', deleteIdea);
 
 $(document).ready(function () {
   ideasToPage();
