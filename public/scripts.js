@@ -20,6 +20,7 @@ const packageSingleIdea = (idea) => {
   <div class="indiv-idea" id=${idea.id}>
     <h2>${idea.title}</h2>
     <p>${idea.description}</p>
+    <button class="delete">Delete</button>
   
   </div>
   `);
