@@ -26,7 +26,19 @@ app.get('/api/v1/ideas', (request, response) => {
 });
 
 app.post('/api/v1/ideas', (request, response) => {
-  database('ideas')
+  const idea = request.body;
+  if (!idea.title && !idea.description) {
+    response.status(422).send({error: 'Missing title and description'})
+  } else {
+    database('ideas').insert(idea, ['id', 'title', 'description'])
+
+      .then((ideas) => {
+        response.status(201).json(ideas[0]);
+      })
+      .catch((error) => {
+        response.status(500).json({ error });
+      });
+  }
 })
 
 app.listen(app.get('port'), () => {
