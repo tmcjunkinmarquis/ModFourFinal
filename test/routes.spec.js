@@ -76,7 +76,7 @@ describe('API routes', () => {
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.an('object');
-          response.body.should.deep.equal({ Success: 'Idea 2 deleted' });
+          response.body.should.deep.equal({ Success: 'Idea 2 deleted.' });
           done()
         });
     });
@@ -87,7 +87,7 @@ describe('API routes', () => {
           response.should.have.status(404);
           response.should.be.json;
           response.body.should.be.an('object');
-          response.body.should.deep.equal({ error: 'Idea was not found.' })
+          response.body.should.deep.equal({ Error: 'Idea 20 was not found.' })
           done()
         });
     });

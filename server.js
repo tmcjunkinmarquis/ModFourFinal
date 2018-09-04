@@ -28,7 +28,7 @@ app.get('/api/v1/ideas', (request, response) => {
 app.post('/api/v1/ideas', (request, response) => {
   const idea = request.body;
   if (!idea.title && !idea.description) {
-    response.status(422).send({error: 'Missing title and description'})
+    response.status(422).send({error: 'Missing title and description'});
   } else {
     database('ideas').insert(idea, ['id', 'title', 'description'])
 
@@ -39,7 +39,26 @@ app.post('/api/v1/ideas', (request, response) => {
         response.status(500).json({ error });
       });
   }
-})
+});
+
+app.delete('/api/v1/ideas/:id', (request, response) => {
+  const { id } = request.params;
+
+  database('ideas')
+    .where('id', id)
+    .del()
+    .then(deletedCount => {
+      if (deletedCount > 0) {
+        response.status(200).json({ Success: `Idea ${id} deleted.` });
+      } else {
+        response.status(404).json({ Error: `Idea ${id} was not found.` });
+      }
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+
+});
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
