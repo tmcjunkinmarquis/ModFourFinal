@@ -2,19 +2,16 @@
 
 const addIdeaHandler = document.querySelector('.button');
 
-const getAllIdeas = (event)=>{
-  event.preventDefault()
+const getAllIdeas = async ()=>{
   
-
   //fetch ideas from ideas table in bucketlist db
-  let ideas = fetch('./api/v1/ideas', ()=>{
-    
-  });
-  
+  let ideas = await fetch('./api/v1/ideas')
+  console.log(await ideas.json());
+  return ideas;
 };
 
-const makeNewIdea = (event)=>{
-  event.preventDefault();
+const makeNewIdea = ()=>{
+  
 
   const ideaInput = document.querySelector('#title');
 
