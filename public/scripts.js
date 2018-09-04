@@ -5,21 +5,31 @@ const addIdeaHandler = document.querySelector('.button');
 const getAllIdeas = async ()=>{
   
   //fetch ideas from ideas table in bucketlist db
-  let ideas = await fetch('./api/v1/ideas')
-  return await ideas.json()
+  let ideas = await fetch('./api/v1/ideas');
+  return await ideas.json();
 };
 
 const displayIdeas = (allIdeas)=>{
   allIdeas.forEach((idea)=>{
-    
-  })
+    packageSingleIdea(idea);
+  }); 
+};
+
+const packageSingleIdea = (idea) => {
+  $('.ideas-container').append(`
+  <div class="indiv-idea" id=${idea.id}>
+    <h2>${idea.title}</h2>
+    <p>${idea.description}</p>
   
-}
+  </div>
+  `);
+};
+
 
 const ideasToPage = async ()=>{
-  const allIdeas = await getAllIdeas()
-  displayIdeas(allIdeas)
-}
+  const allIdeas = await getAllIdeas();
+  displayIdeas(allIdeas);
+};
 
 const makeNewIdea = ()=>{
   
