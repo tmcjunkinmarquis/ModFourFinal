@@ -19,10 +19,10 @@ describe('API routes', () => {
           });
       });
   });
-  
-  describe('Name of the group', () => {
-    
-    it('should return all bucketlist ideas', function (done) {
+
+  describe('GET / api / v1 / ideas', () => {
+
+    it('should return all bucketlist ideas', (done) => {
       chai.request(server)
         .get('/api/v1/ideas')
         .end(function (error, response) {
@@ -40,7 +40,19 @@ describe('API routes', () => {
           done();
         });
     });
+  });
 
+  describe('POST / api / v1 / ideas', () => {
+    it('should add a new idea', (done) => {
+      chai.request(server)
+        .post('/api/v1/ideas')
+        .send({title: "One Big Idea", description: "Do the big thing."})
+        .end((error, response)=>{
+          response.should.have.status(201);
+          response.should.be.json;
+          response.body.should.be.an('object')
+        });
+    });
   });
 
 
