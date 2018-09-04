@@ -1,10 +1,4 @@
-
-
-
-
 const getAllIdeas = async ()=>{
-  
-  //fetch ideas from ideas table in bucketlist db
   let ideas = await fetch('./api/v1/ideas');
   return await ideas.json();
 };
@@ -32,7 +26,6 @@ const ideasToPage = async ()=>{
 
 const makeNewIdea = async (event)=>{
   event.preventDefault();
-  
   const ideaInput = document.querySelector('#title');
   const ideaDescription = document.querySelector('#description');
   const title = ideaInput.value;
@@ -46,11 +39,8 @@ const makeNewIdea = async (event)=>{
   const response = await idea.json();
   $('#title').val('');
   $('#description').val('');
-  console.log(response);
-  
   packageSingleIdea(response);
 };
-
 
 const addIdeaHandler = document.querySelector('.button');
 addIdeaHandler.addEventListener('click', makeNewIdea);

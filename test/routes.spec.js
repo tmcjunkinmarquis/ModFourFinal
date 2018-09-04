@@ -50,7 +50,20 @@ describe('API routes', () => {
         .end((error, response)=>{
           response.should.have.status(201);
           response.should.be.json;
-          response.body.should.be.an('object')
+          response.body.should.be.an('object');
+          done()
+        });
+    });
+    it('should return a 422 for missing item and description', done => {
+      chai.request(server)
+        .post('/api/v1/ideas')
+        .send({ })
+        .end((error, response) => {
+          response.should.have.status(422);
+          response.should.be.json;
+          response.body.should.be.an('object');
+          response.body.should.deep.equal({error: 'Missing title and description'})
+          done()
         });
     });
   });
