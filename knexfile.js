@@ -3,10 +3,10 @@ module.exports = {
     client: 'pg',
     connection: 'postgres://localhost/bucketlist_test',
     migrations: {
-      directory: '/db/migrations'
+      directory: './db/migrations'
     },
     seeds: {
-      directory: '/db/seeds/test'
+      directory: './db/seeds/test'
     },
     useNullAsDefault: true
   },
@@ -27,10 +27,10 @@ module.exports = {
     client: 'pg',
     connection: process.env.DATABASE_URL + `?ssl=true`,
     migrations: {
-      directory: '/db/migrations'
+      directory: './db/migrations'
     },
     seeds: {
-      directory: '/db/seeds/production'
+      directory: './db/seeds/production'
     }
   }
 
