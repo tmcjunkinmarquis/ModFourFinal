@@ -42,9 +42,15 @@ const makeNewIdea = async (event)=>{
   packageSingleIdea(response);
 };
 
-const deleteIdea = ()=>{
-  console.log('howdy')
-}
+const deleteIdea = async ()=>{
+  const ideaId = event.path[1].id;
+  const optionsObj = {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  };
+  event.path[1].remove();
+  await fetch(`/api/v1/ideas/${ideaId}`, optionsObj);
+};
 
 const addIdeaHandler = document.querySelector('.button');
 addIdeaHandler.addEventListener('click', makeNewIdea);
