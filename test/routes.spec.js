@@ -66,7 +66,32 @@ describe('API routes', () => {
           done()
         });
     });
+  })
+
+  describe('DELETE / api / v1 / ideas / :id', () => {
+    it('should add a new idea', (done) => {
+      chai.request(server)
+        .delete('/api/v1/ideas/2')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.an('object');
+          response.body.should.deep.equal({ Success: 'Idea 2 deleted' });
+          done()
+        });
+    });
+    it('should return a 404 if idea does not exist', done => {
+      chai.request(server)
+        .delete('/api/v1/ideas/20')
+        .end((error, response) => {
+          response.should.have.status(404);
+          response.should.be.json;
+          response.body.should.be.an('object');
+          response.body.should.deep.equal({ error: 'Idea was not found.' })
+          done()
+        });
+    });
   });
 
-
+  
 });
