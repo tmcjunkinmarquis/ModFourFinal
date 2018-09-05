@@ -14,7 +14,6 @@ app.get('/', (request, response) => {
   response.send('It isssss a final!!');
 });
 
-
 app.get('/api/v1/ideas', (request, response) => {
   database('ideas').select()
     .then((ideas) => {
@@ -57,13 +56,10 @@ app.delete('/api/v1/ideas/:id', (request, response) => {
     .catch(error => {
       response.status(500).json({ error });
     });
-
 });
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
 });
-
-
 
 module.exports = app;

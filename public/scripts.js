@@ -55,7 +55,6 @@ const deleteIdea = async ()=>{
 const addIdeaHandler = document.querySelector('.button');
 addIdeaHandler.addEventListener('click', makeNewIdea);
 
-
 $('.ideas-container').on('click', '.delete', deleteIdea);
 
 $(document).ready(function () {
